@@ -7,3 +7,9 @@
 				%p.user
 				Submitted by 
 				= pin.user.email
+			= link_to upvote_pin_path(pin.id), method: :put, class: "btn btn-default" do
+				%span.glyphicon.glyphicon-heart
+				= pin.get_upvotes.size
+			= link_to downvote_pin_path(pin.id), method: :put, class: "btn btn-default" do
+				%span.glyphicon.glyphicon-minus-sign
+				= pin.get_downvotes.size

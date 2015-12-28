@@ -16,5 +16,12 @@
 						= @pin.user.email
 					.col-md-6
 						.btn-group.pull-right
-							= link_to "Edit", edit_pin_path , class: "btn btn-default"
-							= link_to "Delete", pin_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"
+							= link_to upvote_pin_path, method: :put, class: "btn btn-default" do
+								%span.glyphicon.glyphicon-heart
+								= @pin.get_upvotes.size
+							= link_to downvote_pin_path, method: :put, class: "btn btn-default" do
+								%span.glyphicon.glyphicon-minus-sign
+								= @pin.get_downvotes.size
+							- if user_signed_in?
+								= link_to "Edit", edit_pin_path , class: "btn btn-default"
+								= link_to "Delete", pin_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"
